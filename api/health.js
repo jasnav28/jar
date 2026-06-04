@@ -1,6 +1,4 @@
-
 export default function handler(req, res) {
-  return res.status(200).json({
-    status: "online"
-  });
+  res.setHeader('Content-Type', 'application/json');
+  res.status(200).send(JSON.stringify({ status: "online" }));
 }
