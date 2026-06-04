@@ -10,15 +10,9 @@ export default async function handler(req, res) {
 
   try {
     // Verify authentication
-    const authHeader = req.headers.authorization;
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return res.status(401).json({ error: 'Missing or invalid Authorization header' });
-    }
-
-    const token = authHeader.substring(7);
-    const validToken = process.env.JARVIS_API_TOKEN;
-    if (token !== validToken) {
-      return res.status(401).json({ error: 'Invalid token' });
+    const authResult = verifyAuth(req);
+    if (!authResult.valid) {
+      return res.status(401).json({ error: authResult.error });
     }
 
     // Parse request body
