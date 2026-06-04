@@ -1,0 +1,17 @@
+
+{
+  "name": "jarvis-vercel-api",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Lightweight Vercel API for JARVIS command queue",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx vercel dev",
+    "deploy": "npx vercel"
+  },
+  "keywords": ["jarvis", "ai", "vercel", "api"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {}
+}
