@@ -5,6 +5,9 @@
   "type": "module",
   "description": "Lightweight Vercel API for JARVIS command queue",
   "main": "index.js",
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
     "dev": "npx vercel dev",
     "deploy": "npx vercel"
