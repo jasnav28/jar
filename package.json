@@ -6,7 +6,7 @@
   "description": "Lightweight Vercel API for JARVIS command queue",
   "main": "index.js",
   "engines": {
-    "node": "24.x"
+    "node": "20.x"
   },
   "scripts": {
     "dev": "npx vercel dev",

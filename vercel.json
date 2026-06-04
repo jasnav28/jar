@@ -2,7 +2,7 @@
   "version": 2,
   "functions": {
     "api/**/*.js": {
-      "runtime": "vercel-node@latest"
+      "runtime": "nodejs20.x"
     }
   },
   "routes": [
@@ -11,8 +11,16 @@
       "dest": "/api/health.js"
     },
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1.js"
+      "src": "/api/command",
+      "dest": "/api/command.js"
+    },
+    {
+      "src": "/api/latest-command",
+      "dest": "/api/latest-command.js"
+    },
+    {
+      "src": "/api/command-status",
+      "dest": "/api/command-status.js"
     },
     {
       "src": "/(.*)",
