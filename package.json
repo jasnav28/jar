@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Lightweight Vercel API for JARVIS command queue",
-  "main": "index.js",
   "engines": {
     "node": "20.x"
   },

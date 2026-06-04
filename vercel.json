@@ -1,31 +1,27 @@
 {
   "version": 2,
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "nodejs20.x"
+  "rewrites": [
+    {
+      "source": "/api/health",
+      "destination": "/api/health.js"
+    },
+    {
+      "source": "/api/command",
+      "destination": "/api/command.js"
+    },
+    {
+      "source": "/api/latest-command",
+      "destination": "/api/latest-command.js"
+    },
+    {
+      "source": "/api/command-status",
+      "destination": "/api/command-status.js"
+    },
+    {
+      "source": "/api",
+      "destination": "/api/index.js"
     }
-  },
-  "routes": [
-    {
-      "src": "/api/health",
-      "dest": "/api/health.js"
-    },
-    {
-      "src": "/api/command",
-      "dest": "/api/command.js"
-    },
-    {
-      "src": "/api/latest-command",
-      "dest": "/api/latest-command.js"
-    },
-    {
-      "src": "/api/command-status",
-      "dest": "/api/command-status.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/public/$1",
-      "check": true
-    }
-  ]
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
 }
