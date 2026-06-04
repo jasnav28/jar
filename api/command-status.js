@@ -1,5 +1,5 @@
 
-import queue from '../lib/queue.js';
+import { getLatestCommand, setLatestCommand, clearLatestCommand } from '../lib/commandStore.js';
 
 export default function handler(req, res) {
   if (req.method !== 'POST') {
@@ -23,11 +23,20 @@ export default function handler(req, res) {
     return res.status(400).json({ error: 'Missing required fields: id and status' });
   }
 
-  const updatedCommand = queue.updateCommandStatus(req.body.id, req.body.status);
-  if (!updatedCommand) {
+  let currentCommand = getLatestCommand();
+  if (!currentCommand || currentCommand.id !== req.body.id) {
     return res.status(404).json({ error: 'Command not found' });
   }
 
-  console.log('Command status updated:', updatedCommand);
-  return res.status(200).json(updatedCommand);
+  currentCommand.status = req.body.status;
+  
+  if (req.body.status === 'completed' || req.body.status === 'failed') {
+    clearLatestCommand();
+    console.log('Command cleared after completion/failure');
+  } else {
+    setLatestCommand(currentCommand);
+  }
+
+  console.log('Command status updated:', currentCommand);
+  return res.status(200).json(currentCommand);
 }

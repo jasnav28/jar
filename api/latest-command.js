@@ -1,5 +1,5 @@
 
-import queue from '../lib/queue.js';
+import { getLatestCommand } from '../lib/commandStore.js';
 
 export default function handler(req, res) {
   if (req.method !== 'GET') {
@@ -19,14 +19,12 @@ export default function handler(req, res) {
     return res.status(401).json({ error: 'Invalid token' });
   }
 
-  const command = queue.getLatestCommand();
-  console.log('Queue length:', queue.getAllCommands().length);
+  const command = getLatestCommand();
+  console.log('Got command:', command);
   
   if (command) {
-    console.log('Returning command:', command);
     return res.status(200).json(command);
   } else {
-    console.log('No pending commands');
     return res.status(200).json({ command: null });
   }
 }
